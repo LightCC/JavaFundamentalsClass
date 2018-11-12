@@ -3,9 +3,15 @@ package com.pluralsight.calcengine;
 public class Main {
 
     public static void main(String[] args) {
-//        MathEquation testEquation = new MathEquation('a');
-//        testEquation.execute();
-//        System.out.println("test = " + testEquation.getResult());
+        useMathEquations();
+        useCalculatorBase();
+
+    }
+
+    static void useMathEquations(){
+        //        MathEquation testEquation = new MathEquation('a');
+        //        testEquation.execute();
+        //        System.out.println("test = " + testEquation.getResult());
 
         MathEquation[] equations = new MathEquation[4];
         equations[0] = new MathEquation('d',100.0d, 50.0d);
@@ -37,7 +43,9 @@ public class Main {
 
         equationOverload.execute((double)leftInt, rightInt);
         System.out.println("double/int result = " + equationOverload.getResult());
+    }
 
+    static void useCalculatorBase(){
         System.out.println();
         System.out.println("Using Inheritance");
         System.out.println();
@@ -54,5 +62,4 @@ public class Main {
             System.out.println("result = " + calculator.getResult());
         }
     }
-
 }
