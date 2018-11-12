@@ -6,19 +6,44 @@ public class CalculateHelper {
     private static final char MULTIPLY_SYMBOL = '*';
     private static final char DIVIDE_SYMBOL = '/';
 
+    private static final int EXPECTED_NUMBER_OF_COMMAND_FIELDS = 3;
+
     MathCommand command;
     double leftValue;
     double rightValue;
     double result;
 
-    public void process(String statement) {
+    /**
+     * @param statement is an input string of the form "command arg1 arg2"
+     *                  Valid commands are:
+     *                      "add": arg1 + arg2
+     *                      "subtract": arg1 - arg2
+     *                      "multiply": arg1 * arg2
+     *                      "divide": arg1 / arg2
+     *                  Commands are case-insensitive.
+     * @throws InvalidStatementException
+     */
+    public void process(String statement) throws InvalidStatementException {
         // add 1.0 2.0
         String[] parts = statement.split(" ");
+        if(parts.length != EXPECTED_NUMBER_OF_COMMAND_FIELDS){
+            throw new InvalidStatementException("Invalid Statement - Incorrect number of fields (expects " + EXPECTED_NUMBER_OF_COMMAND_FIELDS + ")", statement);
+        }
+
         String commandString = parts[0]; // add
-        leftValue = Double.parseDouble(parts[1]); // 1.0
-        rightValue = Double.parseDouble(parts[2]); // 2.0
+
+        try {
+            leftValue = Double.parseDouble(parts[1]); // 1.0
+            rightValue = Double.parseDouble(parts[2]); // 2.0
+        }
+        catch (NumberFormatException e) {
+            throw new InvalidStatementException("Invalid Statement - Non-numeric data", statement, e);
+        }
 
         setCommandFromString(commandString);
+        if(command == null) {
+            throw new InvalidStatementException("Invalid Statement - Invalid command", statement);
+        }
 
         CalculateBase calculator = null;
         switch(command){
