@@ -15,6 +15,11 @@ public class MathEquation {
 
     public double getResult() {return result;}
 
+    public MathEquation (double leftVal, double rightVal, char opCode) {
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+        this.opCode = opCode;
+    }
 
     public void execute(){
         switch (opCode) {

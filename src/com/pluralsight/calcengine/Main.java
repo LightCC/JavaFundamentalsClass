@@ -9,10 +9,10 @@ public class Main {
 //        double[] results = new double[opCodes.length];
 
         MathEquation[] equations = new MathEquation[4];
-        equations[0] = create(100.0d, 50.0d, 'd');
-        equations[1] = create(25.0d, 92.0d, 'a');
-        equations[2] = create(225.0d, 27.0d, 's');
-        equations[3] = create(11.0d, 3.0d, 'm');
+        equations[0] = new MathEquation(100.0d, 50.0d, 'd');
+        equations[1] = new MathEquation(25.0d, 92.0d, 'a');
+        equations[2] = new MathEquation(225.0d, 27.0d, 's');
+        equations[3] = new MathEquation(11.0d, 3.0d, 'm');
 
         for(MathEquation equation : equations) {
             equation.execute();
@@ -21,12 +21,4 @@ public class Main {
 
     }
 
-    public static MathEquation create(double leftVal, double rightVal, char opCode) {
-        MathEquation equation = new MathEquation();
-        equation.setLeftVal(leftVal);
-        equation.setRightVal(rightVal);
-        equation.setOpCode(opCode);
-
-        return equation;
-    }
 }
