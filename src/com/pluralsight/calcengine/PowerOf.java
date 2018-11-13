@@ -1,6 +1,17 @@
 package com.pluralsight.calcengine;
 
-public class PowerOf implements MathProcessing {
+public class PowerOf extends CalculateBase implements MathProcessing {
+    public PowerOf(){}
+
+    public PowerOf(double leftVal, double rightVal){
+        super(leftVal, rightVal);
+    }
+
+    @Override
+    public void calculate() {
+        result = Math.pow(leftVal, rightVal);
+    }
+
     @Override
     public String getKeyword() {
         return "power";
@@ -9,10 +20,5 @@ public class PowerOf implements MathProcessing {
     @Override
     public char getSymbol() {
         return '^';
-    }
-
-    @Override
-    public double doCalculation(double leftVal, double rightVal) {
-        return Math.pow(leftVal, rightVal);
     }
 }

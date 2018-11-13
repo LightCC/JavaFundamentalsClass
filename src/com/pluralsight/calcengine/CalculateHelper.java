@@ -27,7 +27,7 @@ public class CalculateHelper {
         // add 1.0 2.0
         String[] parts = statement.split(" ");
         if(parts.length != EXPECTED_NUMBER_OF_COMMAND_FIELDS){
-            throw new InvalidStatementException("Invalid Statement - Incorrect number of fields (expects " + EXPECTED_NUMBER_OF_COMMAND_FIELDS + ")", statement);
+            throw new InvalidStatementException("Invalid Statement - Incorrect number of fields (expects " + EXPECTED_NUMBER_OF_COMMAND_FIELDS + ")", '"' + statement + '"');
         }
 
         String commandString = parts[0]; // add
@@ -37,12 +37,12 @@ public class CalculateHelper {
             rightValue = Double.parseDouble(parts[2]); // 2.0
         }
         catch (NumberFormatException e) {
-            throw new InvalidStatementException("Invalid Statement - Non-numeric data", statement, e);
+            throw new InvalidStatementException("Invalid Statement - Non-numeric data", '"' + statement + '"', e);
         }
 
         setCommandFromString(commandString);
         if(command == null) {
-            throw new InvalidStatementException("Invalid Statement - Invalid command", statement);
+            throw new InvalidStatementException("Invalid Statement - Invalid command", '"' + statement + '"');
         }
 
         CalculateBase calculator = null;
@@ -65,7 +65,7 @@ public class CalculateHelper {
         }
 
         calculator.calculate();
-        result = calculator.getResult();
+        result = calculator.result;
     }
 
     private void setCommandFromString(String commandString){

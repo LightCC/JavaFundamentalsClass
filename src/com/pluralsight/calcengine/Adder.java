@@ -8,8 +8,7 @@ public class Adder extends CalculateBase implements MathProcessing {
 
     @Override
     public void calculate(){
-        double value = getLeftVal() + getRightVal();
-        setResult(value);
+        result = leftVal + rightVal;
     }
 
     @Override
@@ -22,12 +21,4 @@ public class Adder extends CalculateBase implements MathProcessing {
         return '+';
     }
 
-    @Override
-    public double doCalculation(double leftVal, double rightVal) {
-        setLeftVal(leftVal);
-        setRightVal(rightVal);
-        calculate();
-
-        return getResult();
-    }
 }
